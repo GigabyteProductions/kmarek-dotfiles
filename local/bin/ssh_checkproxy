@@ -1,0 +1,5 @@
+#!/bin/sh
+domain="$1"
+response="$(dig +short -t txt _ssh_proxy."$domain")"
+test "$response" = '"skip"' && exit 1
+exit 0
