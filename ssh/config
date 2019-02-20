@@ -1,0 +1,4 @@
+# ~/.ssh/config
+
+# Include other config files
+Include ~/.ssh/config.d/*.conf
