@@ -1,5 +1,8 @@
-#!/bin/sh
+#!/bin/bash
 domain="$1"
-response="$(dig +short -t txt _ssh_proxy."$domain")"
-test "$response" = '"skip"' && exit 1
-exit 0
+case "$domain" in
+	*)
+		echo "$0: No test for domain: $domain" >&2
+		exit 2
+	;;
+esac
