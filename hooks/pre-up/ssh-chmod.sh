@@ -8,4 +8,4 @@ test -n "${bindir%%/*}" && bindir="$PWD/$bindir"
 
 basedir="$bindir/../.."
 
-chmod -cR go-rwx "$basedir/ssh"
+chmod -cR go-rwx "$basedir/ssh" "$basedir"/tag-*/ssh
