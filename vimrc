@@ -1,6 +1,7 @@
 scriptencoding utf-8
 
 set nohlsearch
+set noincsearch
 set ts=4
 
 if has("patch-7.4.710") " introduction of lcs-space
