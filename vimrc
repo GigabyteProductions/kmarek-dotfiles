@@ -1,7 +1,12 @@
 set nohlsearch
 set ts=4
 
-set listchars=eol:¶,trail:·,space:·,tab:»\ ,nbsp:%
+if has("patch-7.4.710") " introduction of lcs-space
+	set listchars=eol:¶,trail:·,space:·,tab:»\ ,nbsp:%
+else
+	set listchars=eol:¶,trail:·,tab:»\ ,nbsp:%
+endif
+
 highlight SpecialKey ctermfg=grey guifg=grey70
 highlight NonText ctermfg=grey guifg=grey70
 
