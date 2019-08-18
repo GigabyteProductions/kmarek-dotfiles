@@ -4,6 +4,10 @@ set nohlsearch
 set noincsearch
 set ts=4
 
+if has("patch-7.4.785") " introduction of fixeol
+	set nofixeol
+endif
+
 if has("patch-7.4.710") " introduction of lcs-space
 	set listchars=eol:¶,trail:·,space:·,tab:»\ ,nbsp:%
 else
