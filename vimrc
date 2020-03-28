@@ -23,3 +23,5 @@ highlight NonText ctermfg=grey guifg=grey70
 
 let c_space_errors = 1
 let java_space_errors = 1
+
+let g:python_recommended_style = 0
