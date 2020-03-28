@@ -1,7 +1,7 @@
 #!/bin/bash -e
 
 # create ~/.ssh before rcup would with incorrect permissions
-test -d ~/.ssh || mkdir --mode 0700 ~/.ssh
+test -d ~/.ssh || mkdir -v --mode 0700 ~/.ssh
 
 # correct permissions on ssh configuration files before deployment
 
