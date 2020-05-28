@@ -5,4 +5,6 @@
 # if [ "$SHLVL" = 1 ]; then
 #   [ -x /usr/bin/clear ] && /usr/bin/clear
 # fi
-SHLVL=0
+if [ "$SHLVL" = 1 ]; then
+  SHLVL=2
+fi
