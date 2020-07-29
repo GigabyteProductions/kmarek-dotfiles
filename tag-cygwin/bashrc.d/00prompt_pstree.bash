@@ -1,5 +1,29 @@
 # prompt_pstree.bash
 
+# provide alternative to `readarray -d '' -t var` if bash is older than 4.4
+#
+# -d was introduced in 4.4
+# See: https://lists.gnu.org/archive/html/info-gnu/2016-09/msg00012.html
+#
+# TODO: test for feature existence rather than version?
+if [ "${BASH_VERSINFO[0]}" -gt 4 -o "${BASH_VERSINFO[0]}" -eq 4 -a "${BASH_VERSINFO[1]}" -ge 4 ]; then
+  readarray_null()
+  {
+    readarray -d '' -t "$1"
+  }
+else
+  readarray_null()
+  {
+    declare array="$1"
+    eval "${array}=()"
+    i=0
+    while IFS= read -r -d '' elem; do
+      eval "${array}[${i}]=$(printf %q "$elem")"
+      i="$(($i+1))"
+    done
+  }
+fi
+
 pid="$$"
 while [ "$pid" -ne 1 ]; do
   # determine ppid
@@ -11,7 +35,7 @@ while [ "$pid" -ne 1 ]; do
   done < /proc/"$pid"/status
 
   # determine cmdline
-  readarray -d '' -t cmdline < "/proc/$pid/cmdline"
+  readarray_null cmdline < "/proc/$pid/cmdline"
 
   # remove leading path
   cmdline[0]="${cmdline[0]##*/}"
