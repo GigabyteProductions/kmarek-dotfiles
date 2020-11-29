@@ -14,7 +14,7 @@ urlencode() {
 			[a-zA-Z0-9.~_-]) printf -v e "%s" "$c" ;;
 			*) printf -v e '%%%02X' "'$c" ;;
 		esac
-		res+="$e"
+		str+="$e"
 	done
 
 	echo "$str"
