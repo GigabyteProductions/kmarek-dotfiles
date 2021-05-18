@@ -87,3 +87,21 @@ escape_path()
 
 	echo "$str"
 }
+
+# TODO: printf to variable
+escape_home_path()
+{
+	local arg="$1"
+
+	local str=''
+
+	local home="$HOME"
+	while [ -z "${home%%*/}" ]; do home="${home%/}"; done
+
+	local from_home="${arg#$home/}"
+
+	# TODO: escape directly into variable; eliminate subshell
+	str="~/$(escape_path "$from_home")"
+
+	echo "$str"
+}
