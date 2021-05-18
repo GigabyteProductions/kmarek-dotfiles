@@ -60,3 +60,30 @@ escape()
 
 	echo "$str"
 }
+
+# TODO: printf to variable
+escape_path()
+{
+	local arg="$1"
+
+	local str=''
+	local -a components
+	local component
+	local prefix=''
+
+	# TODO: eliminate subshell (but don't add newline)
+	readarray -t -d '/' components < <(printf '%s' "$arg")
+	for component in "${components[@]}"; do
+		local c
+
+		if [ -n "$component" ]; then
+			# TODO: escape directly into variable; eliminate subshell
+			printf -v c '%s%s' "$prefix" "$(escape "$component")"
+		fi
+
+		str+="$c"
+		prefix='/'
+	done
+
+	echo "$str"
+}
