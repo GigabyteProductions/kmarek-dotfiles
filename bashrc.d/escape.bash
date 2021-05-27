@@ -14,8 +14,10 @@ escape()
 		local e
 		printf -v e '%q' "$arg"
 
+		if false; then true
+
 		## if LANG=C but extended ASCII is present
-		#if [ "$LANG" = "C" ] && [[ "$arg" =~ [^\xA8-\xFE] ]]; then
+		#elif [ "$LANG" = "C" ] && [[ "$arg" =~ [^\xA8-\xFE] ]]; then
 		#	# Note: as of writing (bash 5.0.17), this put single quotes around
 		#	# numeric arguments.
 		#	printf -v e '%s' "${arg@Q}"
