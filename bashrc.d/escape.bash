@@ -103,7 +103,11 @@ escape_home_path()
 	local from_home="${arg#$home/}"
 
 	# TODO: escape directly into variable; eliminate subshell
-	str="~/$(escape_path "$from_home")"
+	if [ "$from_home" != "$arg" ]; then
+		str="~/$(escape_path "$from_home")"
+	else
+		str="$(escape_path "$from_home")"
+	fi
 
 	echo "$str"
 }
