@@ -3,6 +3,7 @@ scriptencoding utf-8
 set nohlsearch
 set noincsearch
 set ts=4
+set sw=4
 
 if has("patch-7.4.785") " introduction of fixeol
 	set nofixeol
