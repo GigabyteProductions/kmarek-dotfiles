@@ -16,3 +16,7 @@ BoldBlue=64,160,255
 BoldMagenta=255,0,255
 BoldCyan=0,255,255
 BoldWhite=255,255,255
+BellType=0
+ClearSelectionOnInput=no
+CopyOnSelect=no
+CopyAsRTF=no
