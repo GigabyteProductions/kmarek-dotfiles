@@ -36,3 +36,23 @@ map <up>    gk
 map <down>  gj
 map <right> l
 map <left>  h
+
+" See: https://stackoverflow.com/questions/5172137/vim-retab-spaces-at-the-beginning-of-lines-only/5173322#5173322
+
+"autocmd BufWritePre * :RetabIndents
+command! -range Retab call Retab(<line1>,<line2>)
+
+function! Retab(line1,line2)
+	let l:saved_view = winsaveview()
+
+	" Doesn't handle mixes of tabs and spaces well
+	"execute a:line1.",".a:line2.'s@^\(\t*\)\(\ \{'.&ts.'\}\)\+@\=repeat("\t", len(submatch(2))/'.&ts.')@e'
+
+	" My bash script
+	"execute a:line1.",".a:line2.'!retab.sh '.&ts
+
+	" use the `unexpand` program
+	execute a:line1.",".a:line2.'!unexpand --first-only -t'.&ts
+
+	call winrestview(l:saved_view)
+endfunction
