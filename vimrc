@@ -31,3 +31,8 @@ let java_space_errors = 1
 let g:python_recommended_style = 0
 
 set tabpagemax=100
+
+map <up>    gk
+map <down>  gj
+map <right> l
+map <left>  h
