@@ -21,6 +21,7 @@ highlight NonText ctermfg=grey guifg=grey70
 " Show trailing whitepace and spaces before a tab:
 highlight ExtraWhitespace ctermbg=red guibg=red
 autocmd Syntax * syn match ExtraWhitespace /\s\+$\| \+\ze\t/ containedin=ALL
+match ExtraWhitespace /\s\+$\| \+\ze\t/
 
 " TODO: check VIM version
 let c_space_errors = 1
