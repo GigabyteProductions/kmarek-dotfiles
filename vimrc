@@ -29,3 +29,5 @@ let java_space_errors = 1
 
 " TODO: check VIM version
 let g:python_recommended_style = 0
+
+set tabpagemax=100
