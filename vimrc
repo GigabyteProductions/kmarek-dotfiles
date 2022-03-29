@@ -22,7 +22,9 @@ highlight NonText ctermfg=grey guifg=grey70
 highlight ExtraWhitespace ctermbg=red guibg=red
 autocmd Syntax * syn match ExtraWhitespace /\s\+$\| \+\ze\t/ containedin=ALL
 
+" TODO: check VIM version
 let c_space_errors = 1
 let java_space_errors = 1
 
+" TODO: check VIM version
 let g:python_recommended_style = 0
