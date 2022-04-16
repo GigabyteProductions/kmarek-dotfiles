@@ -1,4 +1,5 @@
-colorscheme industry
+"colorscheme industry
+colorscheme default
 "set guioptions-=m  "menu bar
 set guioptions-=T  "toolbar
 set guioptions-=r  "scrollbar
