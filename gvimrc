@@ -46,3 +46,7 @@ endif
 "
 " END ctrl-shift-c and ctrl-shift-v shortcuts
 "
+
+" gvim will match the size of the parent process's tty
+" but I don't want gvim to do that
+set columns=80 lines=24
