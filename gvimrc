@@ -5,6 +5,9 @@ set guioptions-=T  "toolbar
 set guioptions-=r  "scrollbar
 
 if has("gui_running")
+
+	" TODO: update ctrl/shift-insert shortcuts
+
 	" copy
     map  <silent>  <C-Insert>  "+y
     imap <silent>  <C-Insert>  <Esc>"+ya
