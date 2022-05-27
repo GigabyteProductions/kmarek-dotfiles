@@ -10,8 +10,6 @@ set guioptions-=r  "scrollbar
 function! KmarekGuiEnterSelect()
 	let g:KmarekGuiEnterSelect_selection = &selection
 	set selection=exclusive
-	" restore on leaving insert in case I missed something
-	autocmd InsertLeave * ++once call KmarekGuiLeaveSelect()
 endfunction
 
 function! KmarekGuiLeaveSelect()
@@ -19,6 +17,9 @@ function! KmarekGuiLeaveSelect()
 		let &selection=g:KmarekGuiEnterSelect_selection
 	endif
 endfunction
+
+" restore &selection when going back into plain normal mode
+autocmd InsertLeave * if mode(1) == "n" | call KmarekGuiLeaveSelect() | endif
 
 if has("gui_running")
 
