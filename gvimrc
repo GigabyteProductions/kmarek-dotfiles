@@ -173,3 +173,7 @@ endif
 " gvim will match the size of the parent process's tty
 " but I don't want gvim to do that
 set columns=80 lines=24
+
+" sloppily workaround a bug in gvim/evim where "-- INSERT --" is not
+" shown at first when starting in insert mode
+autocmd InsertEnter * ++once call feedkeys("\<esc>`^i")
