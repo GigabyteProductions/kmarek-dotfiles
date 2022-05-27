@@ -4,6 +4,22 @@ colorscheme default
 set guioptions-=T  "toolbar
 set guioptions-=r  "scrollbar
 
+" The following two functions are my way of using selection=exclusive
+" for select-mode in gvim, specifically. See map commands, below.
+
+function! KmarekGuiEnterSelect()
+	let g:KmarekGuiEnterSelect_selection = &selection
+	set selection=exclusive
+	" restore on leaving insert in case I missed something
+	autocmd InsertLeave * ++once call KmarekGuiLeaveSelect()
+endfunction
+
+function! KmarekGuiLeaveSelect()
+	if exists("g:KmarekGuiEnterSelect_selection")
+		let &selection=g:KmarekGuiEnterSelect_selection
+	endif
+endfunction
+
 if has("gui_running")
 
 	" TODO: update ctrl/shift-insert shortcuts
@@ -14,6 +30,69 @@ if has("gui_running")
 	" paste
     map  <silent>  <S-Insert>  "+p
     imap <silent>  <S-Insert>  <Esc>"+pa
+
+	"
+	" BEGIN select mode customization
+	"
+
+	" The following mappings make shift-arrows and shift-home/end behave
+	" line they do on a typical GUI text editor, while allowing for
+	" selection=inclusive to be used for visual-mode.
+
+	" TODO: Use autocmd ModeChanged if available
+	"       (this would allow for similar behavior with selectmode=mouse)
+
+	" TODO: Why do these not work in evim?
+
+	" shift-arrows from normal mode
+	nnoremap <silent> <s-up> :call KmarekGuiEnterSelect()<cr>gh<up>
+	nnoremap <silent> <s-down> :call KmarekGuiEnterSelect()<cr>gh<down>
+	nnoremap <silent> <s-left> :call KmarekGuiEnterSelect()<cr>gh<left>
+	nnoremap <silent> <s-right> :call KmarekGuiEnterSelect()<cr>gh<right>
+	nnoremap <silent> <s-home> :call KmarekGuiEnterSelect()<cr>gh<home>
+	nnoremap <silent> <s-end> :call KmarekGuiEnterSelect()<cr>gh<end>
+
+	" shift-arrows from insert mode
+	inoremap <silent> <s-up> <C-O>:call KmarekGuiEnterSelect()<cr><c-o>gh<up>
+	inoremap <silent> <s-down> <C-O>:call KmarekGuiEnterSelect()<cr><c-o>gh<down>
+	inoremap <silent> <s-left> <C-O>:call KmarekGuiEnterSelect()<cr><c-o>gh<left>
+	inoremap <silent> <s-right> <C-O>:call KmarekGuiEnterSelect()<cr><c-o>gh<right>
+	inoremap <silent> <s-home> <C-O>:call KmarekGuiEnterSelect()<cr><c-o>gh<home>
+	inoremap <silent> <s-end> <C-O>:call KmarekGuiEnterSelect()<cr><c-o>gh<end>
+
+	" explicitly entering select mode from visual
+	vnoremap <silent> <c-g> <esc>:call KmarekGuiEnterSelect()<cr>gv<c-g>
+
+	" must continue to use shift key when continuing to select
+	snoremap <silent> <s-up> <up>
+	snoremap <silent> <s-down> <down>
+	snoremap <silent> <s-left> <left>
+	snoremap <silent> <s-right> <right>
+	snoremap <silent> <s-home> <home>
+	snoremap <silent> <s-end> <end>
+
+	" go to insert mode when backspacing from plain select mode
+	snoremap <silent> <bs> <bs>i
+
+	" normal arrow keys leaves select mode and restores selection setting
+	snoremap <silent> <up> <esc>:call KmarekGuiLeaveSelect()<cr><up>
+	snoremap <silent> <down> <esc>:call KmarekGuiLeaveSelect()<cr><down>
+	snoremap <silent> <left> <esc>:call KmarekGuiLeaveSelect()<cr><left>
+	snoremap <silent> <right> <esc>:call KmarekGuiLeaveSelect()<cr><right>
+	snoremap <silent> <home> <esc>:call KmarekGuiLeaveSelect()<cr><home>
+	snoremap <silent> <end> <esc>:call KmarekGuiLeaveSelect()<cr><end>
+
+	" restore selection setting when leaving
+	snoremap <silent> <esc> <esc>:call KmarekGuiLeaveSelect()<cr>
+	snoremap <silent> <c-o> <esc>:call KmarekGuiLeaveSelect()<cr>gv
+	snoremap <silent> <c-g> <esc>:call KmarekGuiLeaveSelect()<cr>gv
+
+	" use select-mode instead of visual-mode when highligting with mouse
+	set selectmode=mouse
+
+	"
+	" END select mode customization
+	"
 endif
 
 
