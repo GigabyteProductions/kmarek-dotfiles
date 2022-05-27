@@ -144,6 +144,8 @@ endif
 
 if has("clipboard")
     " CTRL-C and CTRL-Insert are Copy
+    " TODO: Why doesn't visual-mode C-S-C work in gvim?
+    "       (it works in select-mode)
     vnoremap <C-S-C> "+y
 
     " CTRL-V and SHIFT-Insert are Paste
