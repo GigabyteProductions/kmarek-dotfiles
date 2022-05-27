@@ -93,6 +93,45 @@ if has("gui_running")
 	"
 	" END select mode customization
 	"
+
+	" restore cursor position when leaving insert mode
+	" (don't move left by one)
+	inoremap <silent> <esc> <esc>:normal! `^<cr>
+
+	" allow the cursor to remain at the end of a line when leaving
+	" insert mode
+	set virtualedit=onemore
+
+	" allow wrapped line navigation like GUIs usually do
+	set whichwrap=b,s,<,>
+
+	" ctrl-v paste in insert mode
+    exe 'inoremap <script> <C-V> <C-G>u' . paste#paste_cmd['i']
+
+	" ctrl-v paste over a selection
+    snoremap <C-V> <bs>:call KmarekGuiLeaveSelect()<cr>i<C-\><C-O>"+gP
+
+	" don't make ctrl-c leave insert mode
+	inoremap <C-C> <nop>
+
+	" ctrl-c copy a selection, keep selection
+	snoremap <C-C> <c-o>"+ygv<c-g>
+
+	" map ctrl-L like evim does in case I keep mixing it up...
+	imap <C-L> <esc>
+	nnoremap <C-L> <nop>
+
+	" CTRL-Z is Undo; not in cmdline though
+	noremap <C-Z> u
+	inoremap <C-Z> <C-O>u
+
+	" CTRL-Y is Redo (although not repeat); not in cmdline though
+	noremap <C-Y> <C-R>
+	inoremap <C-Y> <C-O><C-R>
+
+	" ctrl-shift-z is redo, in case I mix my GUI shortcuts up...
+	noremap <C-S-Z> <C-R>
+	inoremap <C-S-Z> <C-O><C-R>
 endif
 
 
