@@ -91,6 +91,9 @@ if has("gui_running")
 	snoremap <silent> <c-o> <esc>:call KmarekGuiLeaveSelect()<cr>gv
 	snoremap <silent> <c-g> <esc>:call KmarekGuiLeaveSelect()<cr>gv
 
+	" allow shift-click for selection
+	set mousemodel=popup
+
 	" use select-mode instead of visual-mode when highligting with mouse
 	set selectmode=mouse
 
