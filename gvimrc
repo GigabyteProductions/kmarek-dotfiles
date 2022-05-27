@@ -15,6 +15,7 @@ endfunction
 function! KmarekGuiLeaveSelect()
 	if exists("g:KmarekGuiEnterSelect_selection")
 		let &selection=g:KmarekGuiEnterSelect_selection
+		unlet g:KmarekGuiEnterSelect_selection
 	endif
 endfunction
 
