@@ -8,7 +8,9 @@ set guioptions-=r  "scrollbar
 " for select-mode in gvim, specifically. See map commands, below.
 
 function! KmarekGuiEnterSelect()
-	let g:KmarekGuiEnterSelect_selection = &selection
+	if ! exists("g:KmarekGuiEnterSelect_selection")
+		let g:KmarekGuiEnterSelect_selection = &selection
+	endif
 	set selection=exclusive
 endfunction
 
