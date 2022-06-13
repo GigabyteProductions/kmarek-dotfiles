@@ -55,6 +55,19 @@ set selection=inclusive
 " (this is important for <c-o>"+gP at tne end of a line)
 set virtualedit=onemore
 
+" store things in ~/.vim/
+" (this will avoid creating extra files on Google drive and stuff like that)
+set backupdir=~/.vim/backup/
+set directory=~/.vim/swap/
+set undodir=~/.vim/undo/
+
+" make the above directories if they don't exist
+for dir in [&backupdir,&directory,&undodir]
+	if !exists(dir)
+		call mkdir(dir,'p')
+	endif
+endfor
+
 " don't violate my explicit usage of tabs to appease the Python developers
 " (this is also important to avoid mixing indentation in existing files)
 " TODO: check VIM version
