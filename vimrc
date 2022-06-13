@@ -141,6 +141,10 @@ nmap <s-up> gh<s-up>
 imap <s-down> <c-o>gh<s-down>
 imap <s-up> <c-o>gh<s-up>
 
+" Select mode will go to insert mode when typing "over" a selection,
+" I want similar behavior when backspacing a selection.
+snoremap <bs> <c-o>"_c
+
 " select-all
 " Note: these are character-wise rather than line-wise
 nnoremap <c-a> gggh<c-o>G<c-o>$
