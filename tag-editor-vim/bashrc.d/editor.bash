@@ -18,8 +18,8 @@ export EDITOR=vim
 alias vi=vim
 fi
 
-# use vimx if it exists
-if command -v vimx >/dev/null 2>&1; then
+# use vimx if it exists (and we're not Windows without $DISPLAY)
+if command -v vimx >/dev/null 2>&1 && ! [ "$(uname -o 2>/dev/null)" == "Cygwin" -a "$DISPLAY" = "" ]; then
 export EDITOR=vimx
 alias vim=vimx
 alias vi=vim
