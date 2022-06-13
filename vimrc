@@ -154,6 +154,8 @@ xnoremap <c-s-a> ggoG$<c-g>
 snoremap <c-s-a> <c-o>gg<c-o>o<c-o>G<c-o>$
 endif
 
+if has('clipboard')
+
 " copy
 " TODO: apply ctrl-c to smap and not xmap
 "       (to allow ctrl-c to exit visual mode)
@@ -165,7 +167,6 @@ endif
 
 " paste
 "noremap <c-v> "+gP
-snoremap <c-v> <c-o>"+gP
 cnoremap <c-v> <c-r>+
 if has('gui_running')
 noremap <c-s-v> "+gP
@@ -186,13 +187,15 @@ endif
 " TODO: why does paste.vim put <c-\> before <c-o> ?
 inoremap <c-v> <c-g>u<c-o>"+gP
 xnoremap <c-v> "+gP
-snoremap <c-v> <c-o>"+gP
+snoremap <c-v> <c-o>"_c<c-o>"+gP
 if has('gui_running')
 inoremap <c-s-v> <c-g>u<c-o>"+gP
 inoremap <s-insert> <c-g>u<c-o>"+gP
 vnoremap <c-s-v> <c-o>"+gP
 vnoremap <s-insert> <c-o>"+gP
 endif
+
+endif " has('clipboard')
 
 " undo
 noremap <c-z> u
