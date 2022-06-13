@@ -163,10 +163,12 @@ if has('clipboard')
 " copy
 " TODO: apply ctrl-c to smap and not xmap
 "       (to allow ctrl-c to exit visual mode)
-vnoremap <c-c> "+ygv
+" Note: These vmap ends in <c-g><c-o>o<c-o>o<c-g> so my CursorMoved
+"       select-mode hooks kick-in during "(insert) SELECT" mode.
+vnoremap <c-c> "+ygv<c-g><c-o>o<c-o>o<c-g>
 if has('gui_running')
-vnoremap <c-s-c> "+ygv
-vnoremap <c-insert> "+ygv
+vnoremap <c-s-c> "+ygv<c-g><c-o>o<c-o>o<c-g>
+vnoremap <c-insert> "+ygv<c-g><c-o>o<c-o>o<c-g>
 endif
 
 " paste
