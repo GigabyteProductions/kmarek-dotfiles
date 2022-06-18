@@ -165,7 +165,7 @@ snoremap <bs> <c-o>"_c
 
 " select-all
 " Note: these are character-wise rather than line-wise
-nnoremap <c-a> gg0gh<c-o>G<c-o>$
+"nnoremap <c-a> gg0gh<c-o>G<c-o>$
 inoremap <c-a> <c-o>gg<c-o>0<c-o>gh<c-o>G<c-o>$
 xnoremap <c-a> gg0oG$<c-g>
 snoremap <c-a> <c-o>gg<c-o>0<c-o>o<c-o>G<c-o>$
