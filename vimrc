@@ -160,15 +160,15 @@ snoremap <bs> <c-o>"_c
 
 " select-all
 " Note: these are character-wise rather than line-wise
-nnoremap <c-a> gggh<c-o>G<c-o>$
-inoremap <c-a> <c-o>gg<c-o>gh<c-o>G<c-o>$
-xnoremap <c-a> ggoG$<c-g>
-snoremap <c-a> <c-o>gg<c-o>o<c-o>G<c-o>$
+nnoremap <c-a> gg0gh<c-o>G<c-o>$
+inoremap <c-a> <c-o>gg<c-o>0<c-o>gh<c-o>G<c-o>$
+xnoremap <c-a> gg0oG$<c-g>
+snoremap <c-a> <c-o>gg<c-o>0<c-o>o<c-o>G<c-o>$
 if has('gui_running')
-nnoremap <c-s-a> gggh<c-o>G<c-o>$
-inoremap <c-s-a> <c-o>gg<c-o>gh<c-o>G<c-o>$
-xnoremap <c-s-a> ggoG$<c-g>
-snoremap <c-s-a> <c-o>gg<c-o>o<c-o>G<c-o>$
+nnoremap <c-s-a> gg0gh<c-o>G<c-o>$
+inoremap <c-s-a> <c-o>gg<c-o>0<c-o>gh<c-o>G<c-o>$
+xnoremap <c-s-a> gg0oG$<c-g>
+snoremap <c-s-a> <c-o>gg<c-o>0<c-o>o<c-o>G<c-o>$
 endif
 
 if has('clipboard')
