@@ -226,7 +226,7 @@ noremap <c-z> u
 inoremap <c-z> <c-o>u
 
 " redo
-noremap <c-y> <c-r>
+"noremap <c-y> <c-r>
 inoremap <c-y> <c-o><c-r>
 
 " evim makes ctrl-l in insert mode go to normal mode
