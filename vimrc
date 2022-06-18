@@ -86,6 +86,13 @@ let g:oscyank_silent = v:true
 let g:oscyank_term = 'default'
 source ~/.vim/oscyank.vim
 
+" Use xterm control sequencees to set cursor shape
+"if &term =~ "xterm"
+"let &t_SI = "\<Esc>[5 q"
+"let &t_EI = "\<Esc>[1 q"
+"let &t_SR = "\<Esc>[3 q"
+"endif
+
 " functiton to setup my highlights
 function! MyHighlights()
 
