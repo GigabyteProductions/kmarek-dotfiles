@@ -10,6 +10,10 @@ set guioptions-=r  "scrollbar
 " but I don't want gvim to do that
 set columns=80 lines=24
 
+" use exclusive selection "by default" for correct double-click selections
+" (my hook in ~/.vimrc will automatically use inclusive for visual mode)
+set selection=exclusive
+
 " sloppily workaround a bug in gvim/evim where "-- INSERT --" is not
 " shown at first when starting in insert mode
 autocmd InsertEnter * ++once call feedkeys("\<c-\>\<c-n>`^i")
