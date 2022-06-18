@@ -237,18 +237,29 @@ inoremap <c-l> <c-\><c-n>
 " The following three functions are my way of clearing &keymodel
 " when using visual mode, because I only want keymodel=stopsel for
 " select mode.
+"
+" Additionally, they switch to selection=inclusive for visual mode
+" (this is what I want when my gvim is normally using exclusive for select)
 
 function! KmarekUiEnterVisual()
 	if ! exists("g:KmarekUiEnterVisual_keymodel")
 		let g:KmarekUiEnterVisual_keymodel = &keymodel
 	endif
+	if ! exists("g:KmarekUiEnterVisual_selection")
+		let g:KmarekUiEnterVisual_selection = &selection
+	endif
 	set keymodel=
+	set selection=inclusive
 endfunction
 
 function! KmarekUiLeaveVisual()
 	if exists("g:KmarekUiEnterVisual_keymodel")
 		let &keymodel=g:KmarekUiEnterVisual_keymodel
 		unlet g:KmarekUiEnterVisual_keymodel
+	endif
+	if exists("g:KmarekUiEnterVisual_selection")
+		let &selection=g:KmarekUiEnterVisual_selection
+		unlet g:KmarekUiEnterVisual_selection
 	endif
 endfunction
 
@@ -265,7 +276,7 @@ function! KmarekUiMaybeVisual()
 	endif
 endfunction
 
-" automatically fix &keymodel when entering/exiting visual mode
+" automatically fix &keymodel and &selection when entering/exiting visual mode
 autocmd InsertEnter * silent! call KmarekUiMaybeVisual()
 autocmd InsertLeave * silent! call KmarekUiMaybeVisual()
 autocmd SafeState * silent! call KmarekUiMaybeVisual()
