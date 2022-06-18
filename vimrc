@@ -313,3 +313,17 @@ function! Retab(line1,line2)
 
 	call winrestview(l:saved_view)
 endfunction
+
+
+" command to reduce terminal I/O, for slow connections
+
+function! Slow()
+	set noruler noshowcmd noshowmode nottyfast
+	set nohlsearch nospell
+	syntax off
+	highlight clear
+	set t_Co=0
+	set cpoptions+=v$
+endfunction
+
+command! Slow call Slow()
