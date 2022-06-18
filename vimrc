@@ -227,6 +227,12 @@ vnoremap <c-s-v> <c-o>"+gP
 vnoremap <s-insert> <c-o>"+gP
 endif
 
+" Use OSC 52 to set remote clipboard when in ssh or tmux
+"
+if $SSH_CLIENT != "" || $TMUX != ""
+autocmd TextYankPost * if v:event.operator is 'y' && v:event.regname is '+' | execute 'OSCYankReg +' | endif
+endif
+
 endif " has('clipboard')
 
 " undo
