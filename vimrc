@@ -108,11 +108,16 @@ match ExtraWhitespace /\s\+$\| \+\ze\t/
 "         visual block (use <esc> to cancel, <c-v> from normal mode to
 "         start visual block)
 "
+"       - <c-a> in normal mode will select all instead of adding to a
+"         number (maybe use g<c-a> in visual mode, instead)
+"
 "       - <c-a> in insert mode will select all instead of repeating
 "         previous insertion
 "
 "       - <c-z> will undo instead of putting vim in the background
 "         use :call feedkeys("\<c-z>", 'n') to put vim in background)
+"
+"       - <c-y> in normal mode will redo instead of scrolling up
 "
 "       - shift-arrows will perform GUI-like selection instead of navigating
 "         by word boundaries (use w and b instead)
