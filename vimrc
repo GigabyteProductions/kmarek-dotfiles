@@ -184,6 +184,7 @@ xnoremap <c-s-a> gg0oG$<c-g>
 snoremap <c-s-a> <c-o>gg<c-o>0<c-o>o<c-o>G<c-o>$
 endif
 
+" TODO: use another register when "+ doesn't exist
 if has('clipboard')
 
 " copy
