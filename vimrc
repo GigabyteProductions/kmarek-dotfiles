@@ -78,6 +78,14 @@ let g:python_recommended_style = 0
 let c_space_errors = 1
 let java_space_errors = 1
 
+" Import functions to set remote clipboard using OSC 52
+"
+" Note: OSC 52 is defined by xterm but implemented in several terminals
+" See: https://invisible-island.net/xterm/ctlseqs/ctlseqs.html
+let g:oscyank_silent = v:true
+let g:oscyank_term = 'default'
+source ~/.vim/oscyank.vim
+
 " functiton to setup my highlights
 function! MyHighlights()
 
