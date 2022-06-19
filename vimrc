@@ -174,6 +174,39 @@ nmap <s-up> gh<s-up>
 imap <s-down> <c-o>gh<s-down>
 imap <s-up> <c-o>gh<s-up>
 
+" shift-left and shift-right start selection
+" (but adjusts for cursor position for selection=inclusive)
+" TODO: check for selectmode=key keymodel=startsel selection=inclusive
+nmap <s-left> <left>gh
+nmap <s-right> gh
+imap <s-left> <left><c-o>gh
+imap <s-right> <c-o>gh
+
+" ctrl-shift-left and ctrl-shift-right select by words
+" (with adjusted selection behavior)
+" TODO: check for selectmode=key keympdel=startsel selection=inclusive
+nmap <c-s-left> <left>gh<c-o>B
+nmap <c-s-right> gh<c-o>E
+imap <c-s-left> <left><c-o>gh<c-o>B
+imap <c-s-right> <c-o>gh<c-o>E
+function! KmarekVisualExpr(left,right,same)
+	let l:pos = getpos('.')[1:2]
+	let l:end = getpos('v')[1:2]
+	if l:pos[0] < l:end[0]
+		return a:left
+	elseif l:pos[0] > l:end[0]
+		return a:right
+	elseif l:pos[1] < l:end[1]
+		return a:left
+	elseif l:pos[1] > l:end[1]
+		return a:right
+	else
+		return a:same
+	endif
+endfunction
+smap <expr> <c-s-left> KmarekVisualExpr("\<c-o>B","\<c-o>gE","\<c-o>B")
+smap <expr> <c-s-right> KmarekVisualExpr("\<c-o>W","\<c-o>E","\<c-o>E")
+
 " Select mode will go to insert mode when typing "over" a selection,
 " I want similar behavior when backspacing a selection.
 snoremap <bs> <c-o>"_c
@@ -256,6 +289,7 @@ inoremap <c-l> <c-\><c-n>
 
 
 
+if 0
 " The following three functions are my way of clearing &keymodel
 " when using visual mode, because I only want keymodel=stopsel for
 " select mode.
@@ -303,6 +337,7 @@ autocmd InsertEnter * silent! call KmarekUiMaybeVisual()
 autocmd InsertLeave * silent! call KmarekUiMaybeVisual()
 autocmd SafeState * silent! call KmarekUiMaybeVisual()
 autocmd CursorMoved * silent! call KmarekUiMaybeVisual()
+endif " 0
 
 
 " Setup the "Retab" command to fix leading indentation "my" way

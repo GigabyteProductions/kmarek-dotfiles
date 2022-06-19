@@ -10,9 +10,11 @@ set guioptions-=r  "scrollbar
 " but I don't want gvim to do that
 set columns=80 lines=24
 
+if 0
 " use exclusive selection "by default" for correct double-click selections
 " (my hook in ~/.vimrc will automatically use inclusive for visual mode)
 set selection=exclusive
+endif " 0
 
 " sloppily workaround a bug in gvim/evim where "-- INSERT --" is not
 " shown at first when starting in insert mode
@@ -20,6 +22,7 @@ autocmd InsertEnter * ++once call feedkeys("\<c-\>\<c-n>`^i")
 
 
 
+if 0
 " The following three functions are my way of setting selection=exclusive
 " during select-mode, specifically. These are only useful for gvim because
 " gvim can programmatically switch between beam and block cursors.
@@ -56,3 +59,4 @@ autocmd InsertEnter * silent! call KmarekGuiMaybeSelect()
 autocmd InsertLeave * silent! call KmarekGuiMaybeSelect()
 autocmd SafeState * silent! call KmarekGuiMaybeSelect()
 autocmd CursorMoved * silent! call KmarekGuiMaybeSelect()
+endif " 0
