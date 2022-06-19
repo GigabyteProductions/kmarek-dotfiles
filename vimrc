@@ -6,6 +6,9 @@ set nocompatible
 " hide vim welcome screen
 set shm+=I
 
+" disable modelines
+set nomodeline
+
 " enable desired vim status messages
 " (shown on the command-line / bottom of the screen)
 set showmode
