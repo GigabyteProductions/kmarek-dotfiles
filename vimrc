@@ -218,7 +218,7 @@ smap <expr> <c-s-right> KmarekVisualExpr("\<c-o>E<c-o><right>","\<c-o>E","\<c-o>
 
 " Select mode will go to insert mode when typing "over" a selection,
 " I want similar behavior when backspacing a selection.
-snoremap <bs> <c-o>"_c
+snoremap <bs> <space><bs>
 
 " select-all
 " Note: these are character-wise rather than line-wise
