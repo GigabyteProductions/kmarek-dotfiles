@@ -298,7 +298,6 @@ inoremap <c-l> <c-\><c-n>
 
 
 
-if 0
 " The following three functions are my way of clearing &keymodel
 " when using visual mode, because I only want keymodel=stopsel for
 " select mode.
@@ -346,7 +345,6 @@ autocmd InsertEnter * silent! call KmarekUiMaybeVisual()
 autocmd InsertLeave * silent! call KmarekUiMaybeVisual()
 autocmd SafeState * silent! call KmarekUiMaybeVisual()
 autocmd CursorMoved * silent! call KmarekUiMaybeVisual()
-endif " 0
 
 
 " Setup the "Retab" command to fix leading indentation "my" way
