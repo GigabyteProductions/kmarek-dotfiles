@@ -160,6 +160,15 @@ sunmap <up>
 xnoremap <left> h
 xnoremap <right> l
 
+" ctrl-left and ctrl-right move by word boundaries
+" (adjusted to act like GUIs)
+nnoremap <c-left> B
+nnoremap <c-right> E<right>
+inoremap <c-left> <c-o>B
+inoremap <c-right> <c-o>E<right>
+xnoremap <c-left> B
+xnoremap <c-right> El
+
 " shift-up and shift-down in select mode move by screen lines
 " TODO: check for selectmode=key keymodel=startsel
 snoremap <s-down> <c-o>g<down>
