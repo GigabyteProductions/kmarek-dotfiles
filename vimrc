@@ -204,8 +204,8 @@ function! KmarekVisualExpr(left,right,same)
 		return a:same
 	endif
 endfunction
-smap <expr> <c-s-left> KmarekVisualExpr("\<c-o>B","\<c-o>gE","\<c-o>B")
-smap <expr> <c-s-right> KmarekVisualExpr("\<c-o>W","\<c-o>E","\<c-o>E")
+smap <expr> <c-s-left> KmarekVisualExpr("\<c-o>B","\<c-o>B<c-o><left>","\<c-o>B")
+smap <expr> <c-s-right> KmarekVisualExpr("\<c-o>E<c-o><right>","\<c-o>E","\<c-o>E")
 
 " Select mode will go to insert mode when typing "over" a selection,
 " I want similar behavior when backspacing a selection.
