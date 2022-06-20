@@ -157,6 +157,8 @@ map <down> g<down>
 map <up> g<up>
 sunmap <down>
 sunmap <up>
+imap <down> <c-o>g<down>
+imap <up> <c-o>g<up>
 
 " make left and right not cancel visual when keymodel=stopsel
 " TODO: check for keymodel=stopsel
