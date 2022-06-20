@@ -273,7 +273,7 @@ endif
 "endif
 " TODO: why does paste.vim put <c-\> before <c-o> ?
 inoremap <c-v> <c-g>u<c-o>"+gP
-xnoremap <c-v> "+gP
+"xnoremap <c-v> "+gP
 snoremap <c-v> <c-o>"_c<c-o>"+gP
 if has('gui_running')
 inoremap <c-s-v> <c-g>u<c-o>"+gP
