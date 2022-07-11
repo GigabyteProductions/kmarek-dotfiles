@@ -221,6 +221,19 @@ endfunction
 smap <expr> <c-s-left> KmarekVisualExpr("\<c-o>B","\<c-o>B<c-o><left>","\<c-o>B")
 smap <expr> <c-s-right> KmarekVisualExpr("\<c-o>E<c-o><right>","\<c-o>E","\<c-o>E")
 
+" shift-home selects to the left direction, correct initial cursor position
+" TODO: check for selectmode=key keymodel=startsel selection=inclusive
+nnoremap <s-home> <left><s-home>
+inoremap <s-home> <left><s-home>
+nnoremap <c-s-home> <left><c-s-home>
+inoremap <c-s-home> <left><c-s-home>
+
+" shift-end selects the newline at the end of the line, correct end position
+" TODO: check for selectmode=key keymodel=startsel selection=inclusive virtualedit=onemore
+nnoremap <s-end> gh<c-o>$<c-o>h
+inoremap <s-end> <c-o>gh<c-o>$<c-o>h
+snoremap <s-end> <c-o>$<c-o>h
+
 " Select mode will go to insert mode when typing "over" a selection,
 " I want similar behavior when backspacing a selection.
 snoremap <bs> <space><bs>
