@@ -198,7 +198,7 @@ imap <s-right> <c-o>gh
 
 " ctrl-shift-left and ctrl-shift-right select by words
 " (with adjusted selection behavior)
-" TODO: check for selectmode=key keympdel=startsel selection=inclusive
+" TODO: check for selectmode=key keymodel=startsel selection=inclusive
 nmap <c-s-left> <left>gh<c-o>B
 nmap <c-s-right> gh<c-o>E
 imap <c-s-left> <left><c-o>gh<c-o>B
