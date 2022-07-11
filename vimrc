@@ -394,3 +394,9 @@ function! Slow()
 endfunction
 
 command! Slow call Slow()
+
+function Words()
+	set laststatus=2 statusline=%{wordcount().words}\ words
+endfunction
+
+command! Words call Words()
