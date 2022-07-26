@@ -96,6 +96,38 @@ source ~/.vim/oscyank.vim
 "let &t_SR = "\<Esc>[3 q"
 "endif
 
+
+" set cursors for linux tty
+"
+" See: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/plain/Documentation/VGA-softcursor.txt?h=v2.6.12
+if &term =~ "linux"
+
+" start insert mode (using standard underline in linux tty)
+let &t_SI = "\e[?2c"
+" start replace mode (using thick underline in linux tty)
+let &t_SR = "\e[?3c"
+" end insert or replace mode (block cursor shape)
+let &t_EI = "\e[?8c"
+
+" vim only uses t_EI when entering normal mode by leaving insert mode,
+" and instead uses t_VS at the very beginning. However, vim doesn't send
+" t_VS if t_vs is not also set. Set them both to t_EI so we get a
+" block cursor when vim starts.
+let &t_vs = &t_EI
+let &t_VS = &t_EI
+
+" the default cursor visible/invisible codes include "\e[?c" sequences,
+" which reset the cursor shape (preventing t_SI, t_SR, and t_EI from
+" working)
+let &t_ve = "\e[?25h"
+let &t_vi = "\e[?25l"
+
+" reset cursor shape when vim exits
+autocmd VimLeave * call echoraw("\e[?c")
+
+endif " &term =~ "linux"
+
+
 " functiton to setup my highlights
 function! MyHighlights()
 
