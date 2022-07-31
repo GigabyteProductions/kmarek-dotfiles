@@ -47,13 +47,6 @@ set mousemodel=popup
 set whichwrap=b,s,<,>,[,]
 set backspace=indent,eol,start
 
-" explicitly set selection=inclusive (this is the default)
-" Note: this means the character *at* the cursor position is included
-"
-" See gvimrc for automatic switching to selection=exclusive for select
-" mode (for vim GUI, only)
-set selection=inclusive
-
 " allow the cursor to remain at the end of a line when leaving insert mode
 " (this is important for <c-o>"+gP at tne end of a line)
 set virtualedit=onemore
@@ -157,6 +150,15 @@ if has("kmarek_term_allowinvcur")
 endif
 
 endif " &term =~ "linux"
+
+
+" maybe use exclusive selection by default if the conditions are right
+if g:kmarek_want_exclusive_selection
+	set selection=exclusive
+else
+	set selection=inclusive
+endif
+
 
 
 " functiton to setup my highlights
