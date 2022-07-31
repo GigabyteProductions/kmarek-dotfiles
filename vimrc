@@ -90,11 +90,28 @@ let g:oscyank_term = 'default'
 source ~/.vim/oscyank.vim
 
 " Use xterm control sequencees to set cursor shape
-"if &term =~ "xterm"
-"let &t_SI = "\<Esc>[5 q"
-"let &t_EI = "\<Esc>[1 q"
-"let &t_SR = "\<Esc>[3 q"
-"endif
+if &term =~ "xterm"
+
+" start insert mode (bar cursor shape)
+let &t_SI = "\e[5 q"
+
+" start replace mode (underline cursor shape)
+let &t_EI = "\e[1 q"
+
+" end insert or replace mode (block cursor shape)
+let &t_SR = "\e[3 q"
+
+" vim only uses t_EI when entering normal mode by leaving insert mode,
+" and instead uses t_VS at the very beginning. However, vim doesn't send
+" t_VS if t_vs is not also set. Set them both to t_EI so we get a
+" block cursor when vim starts.
+let &t_vs = &t_EI
+let &t_VS = &t_EI
+
+" reset cursor shape when vim exits
+autocmd VimLeave * call echoraw("\e[0 q")
+
+endif " &term =~ "xterm"
 
 
 " set cursors for linux tty
