@@ -111,6 +111,11 @@ let &t_VS = &t_EI
 " reset cursor shape when vim exits
 autocmd VimLeave * call echoraw("\e[0 q")
 
+" fix visual mode highlight
+if has("kmarek_term_allowinvcur")
+	set allowinvcur
+endif
+
 endif " &term =~ "xterm"
 
 
@@ -141,6 +146,11 @@ let &t_vi = "\e[?25l"
 
 " reset cursor shape when vim exits
 autocmd VimLeave * call echoraw("\e[?c")
+
+" fix visual mode highlight
+if has("kmarek_term_allowinvcur")
+	set allowinvcur
+endif
 
 endif " &term =~ "linux"
 
