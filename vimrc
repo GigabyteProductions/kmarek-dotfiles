@@ -89,6 +89,10 @@ let g:oscyank_silent = 1
 let g:oscyank_term = 'default'
 source ~/.vim/oscyank.vim
 
+
+let g:kmarek_want_exclusive_selection = 0
+
+
 " Use xterm control sequencees to set cursor shape
 if &term =~ "xterm"
 
@@ -424,6 +428,50 @@ if has("patch-8.1.2044") " introduction of SafeState
 autocmd SafeState * silent! call KmarekUiMaybeVisual()
 endif
 autocmd CursorMoved * silent! call KmarekUiMaybeVisual()
+
+
+
+" The following three functions are my way of setting selection=exclusive
+" during select-mode, specifically. These are only useful for gvim because
+" gvim can programmatically switch between beam and block cursors.
+
+function! KmarekUiEnterSelect()
+	if ! exists("g:KmarekUiEnterSelect_selection")
+		let g:KmarekUiEnterSelect_selection = &selection
+	endif
+	if g:kmarek_want_exclusive_selection
+		set selection=exclusive
+	endif
+endfunction
+
+function! KmarekUiLeaveSelect()
+	if exists("g:KmarekUiEnterSelect_selection")
+		let &selection=g:KmarekUiEnterSelect_selection
+		unlet g:KmarekUiEnterSelect_selection
+	endif
+endfunction
+
+function! KmarekUiMaybeSelect()
+	"redir >> ~/vim.log
+	"echo 'KmarekUiMaybeSelect ' . mode(0) . ' ' . mode(1)
+	"redir END
+	if mode(0) == 's'
+		call KmarekUiEnterSelect()
+	elseif mode(1) =~ "^ni"
+		" ignore one-shot normal mode in insert mode
+	else
+		call KmarekUiLeaveSelect()
+	endif
+endfunction
+
+" automatically fix &selection when entering/exiting select mode
+autocmd InsertEnter * silent! call KmarekUiMaybeSelect()
+autocmd InsertLeave * silent! call KmarekUiMaybeSelect()
+if has("patch-8.1.2044") " introduction of SafeState
+autocmd SafeState * silent! call KmarekUiMaybeSelect()
+endif
+autocmd CursorMoved * silent! call KmarekUiMaybeSelect()
+
 
 
 " Setup the "Retab" command to fix leading indentation "my" way
