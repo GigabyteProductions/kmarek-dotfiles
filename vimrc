@@ -85,6 +85,13 @@ source ~/.vim/oscyank.vim
 
 let g:kmarek_want_exclusive_selection = 0
 
+if has("gui")
+	" automatically set selection=exclusive for select mode
+	if has("kmarek_bugfix_selection_exclusive_word_boundary")
+		let g:kmarek_want_exclusive_selection = 1
+	endif
+endif
+
 
 " Use xterm control sequencees to set cursor shape
 if &term =~ "xterm"
@@ -111,6 +118,11 @@ autocmd VimLeave * call echoraw("\e[0 q")
 " fix visual mode highlight
 if has("kmarek_term_allowinvcur")
 	set allowinvcur
+endif
+
+" automatically set selection=exclusive for select mode
+if has("kmarek_term_allowinvcur") && has("kmarek_bugfix_selection_exclusive_word_boundary") && has("kmarek_term_visual_cursor_t_SI")
+	let g:kmarek_want_exclusive_selection = 1
 endif
 
 endif " &term =~ "xterm"
@@ -147,6 +159,11 @@ autocmd VimLeave * call echoraw("\e[?c")
 " fix visual mode highlight
 if has("kmarek_term_allowinvcur")
 	set allowinvcur
+endif
+
+" automatically set selection=exclusive for select mode
+if has("kmarek_term_allowinvcur") && has("kmarek_bugfix_selection_exclusive_word_boundary") && has("kmarek_term_visual_cursor_t_SI")
+	let g:kmarek_want_exclusive_selection = 1
 endif
 
 endif " &term =~ "linux"
