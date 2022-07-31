@@ -256,17 +256,17 @@ imap <s-up> <c-o>gh<s-up>
 " shift-left and shift-right start selection
 " (but adjusts for cursor position for selection=inclusive)
 " TODO: check for selectmode=key keymodel=startsel selection=inclusive
-nmap <s-left> <left>gh
-nmap <s-right> gh
-imap <s-left> <left><c-o>gh
-imap <s-right> <c-o>gh
+nmap <expr> <s-left> &selection ==? "inclusive" ? "<left>gh" : "<s-left>"
+nmap <expr> <s-right> &selection ==? "inclusive" ? "gh" : "<s-right>"
+imap <expr> <s-left> &selection ==? "inclusive" ? "<left><c-o>gh" : "<s-left>"
+imap <expr> <s-right> &selection ==? "inclusive" ? "<c-o>gh" : "<s-right>"
 
 " ctrl-shift-left and ctrl-shift-right select by words
 " (with adjusted selection behavior)
 " TODO: check for selectmode=key keymodel=startsel selection=inclusive
-nmap <c-s-left> <left>gh<c-o>B
+nmap <expr> <c-s-left> &selection ==? "inclusive" ? "<left>gh<c-o>B" : "gh<c-o>B"
 nmap <c-s-right> gh<c-o>E
-imap <c-s-left> <left><c-o>gh<c-o>B
+imap <expr> <c-s-left> &selection ==? "inclusive" ? "<left><c-o>gh<c-o>B" : "<c-o>gh<c-o>B"
 imap <c-s-right> <c-o>gh<c-o>E
 function! KmarekVisualExpr(left,right,same)
 	let l:pos = getpos('.')[1:2]
@@ -283,8 +283,8 @@ function! KmarekVisualExpr(left,right,same)
 		return a:same
 	endif
 endfunction
-smap <expr> <c-s-left> KmarekVisualExpr("\<c-o>B","\<c-o>B<c-o><left>","\<c-o>B")
-smap <expr> <c-s-right> KmarekVisualExpr("\<c-o>E<c-o><right>","\<c-o>E","\<c-o>E")
+smap <expr> <c-s-left> &selection ==? "inclusive" ? KmarekVisualExpr("\<c-o>B","\<c-o>B<c-o><left>","\<c-o>B") : KmarekVisualExpr("\<c-o>B","\<c-o>B","\<c-o>B")
+smap <expr> <c-s-right> &selection ==? "inclusive" ? KmarekVisualExpr("\<c-o>E<c-o><right>","\<c-o>E","\<c-o>E") : KmarekVisualExpr("\<c-o>E<c-o><right>","\<c-o>E","\<c-o>E<c-o><right>")
 
 " shift-home selects to the left direction, correct initial cursor position
 " TODO: check for selectmode=key keymodel=startsel selection=inclusive
