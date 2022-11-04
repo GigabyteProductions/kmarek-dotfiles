@@ -66,7 +66,7 @@ set undodir=~/.vim/undo/
 
 " make the above directories if they don't exist
 for dir in [&backupdir,&directory,&undodir]
-	if !exists(dir)
+	if !isdirectory(dir)
 		call mkdir(dir,'p')
 	endif
 endfor
