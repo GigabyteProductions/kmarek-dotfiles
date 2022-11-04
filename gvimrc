@@ -57,6 +57,8 @@ endfunction
 " automatically fix &selection when entering/exiting select mode
 autocmd InsertEnter * silent! call KmarekGuiMaybeSelect()
 autocmd InsertLeave * silent! call KmarekGuiMaybeSelect()
+if has("patch-8.1.2044") " introduction of SafeState
 autocmd SafeState * silent! call KmarekGuiMaybeSelect()
+endif
 autocmd CursorMoved * silent! call KmarekGuiMaybeSelect()
 endif " 0

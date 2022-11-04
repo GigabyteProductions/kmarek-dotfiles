@@ -393,7 +393,9 @@ endfunction
 " automatically fix &keymodel and &selection when entering/exiting visual mode
 autocmd InsertEnter * silent! call KmarekUiMaybeVisual()
 autocmd InsertLeave * silent! call KmarekUiMaybeVisual()
+if has("patch-8.1.2044") " introduction of SafeState
 autocmd SafeState * silent! call KmarekUiMaybeVisual()
+endif
 autocmd CursorMoved * silent! call KmarekUiMaybeVisual()
 
 
