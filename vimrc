@@ -85,7 +85,7 @@ let java_space_errors = 1
 "
 " Note: OSC 52 is defined by xterm but implemented in several terminals
 " See: https://invisible-island.net/xterm/ctlseqs/ctlseqs.html
-let g:oscyank_silent = v:true
+let g:oscyank_silent = 1
 let g:oscyank_term = 'default'
 source ~/.vim/oscyank.vim
 
