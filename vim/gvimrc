@@ -1,0 +1,6 @@
+scriptencoding utf-8
+
+" source drop-in gvimrc files
+for f in split(glob('~/.vim/gvimrc.d/*.vim'), '\n')
+    exe 'source' f
+endfor
