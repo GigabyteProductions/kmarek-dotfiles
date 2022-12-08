@@ -1,0 +1,4 @@
+[submodule "rcm"]
+	path = modules/rcm
+	url = .
+	branch = rcm
