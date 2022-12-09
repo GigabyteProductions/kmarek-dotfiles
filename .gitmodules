@@ -18,3 +18,7 @@
 	path = modules/kmarek-dotfiles-skel-vim-drop-in
 	url = .
 	branch = kmarek-dotfiles-skel-vim-drop-in
+[submodule "kmarek-dotfiles-shared-bash-debug-hook"]
+	path = modules/kmarek-dotfiles-shared-bash-debug-hook
+	url = .
+	branch = kmarek-dotfiles-shared-bash-debug-hook
