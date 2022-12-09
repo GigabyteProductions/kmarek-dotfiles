@@ -42,3 +42,7 @@
 	path = modules/kmarek-dotfiles-shared-bash-util-urlescape
 	url = .
 	branch = kmarek-dotfiles-shared-bash-util-urlescape
+[submodule "kmarek-dotfiles-personal-vimrc"]
+	path = modules/kmarek-dotfiles-personal-vimrc
+	url = .
+	branch = kmarek-dotfiles-personal-vimrc
