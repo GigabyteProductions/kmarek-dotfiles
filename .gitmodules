@@ -34,3 +34,7 @@
 	path = modules/kmarek-dotfiles-shared-bash-util-tac
 	url = .
 	branch = kmarek-dotfiles-shared-bash-util-tac
+[submodule "kmarek-dotfiles-shared-bash-util-escape"]
+	path = modules/kmarek-dotfiles-shared-bash-util-escape
+	url = .
+	branch = kmarek-dotfiles-shared-bash-util-escape
