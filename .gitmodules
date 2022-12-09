@@ -6,3 +6,7 @@
 	path = modules/kmarek-dotfiles-skel-shell-drop-in
 	url = .
 	branch = kmarek-dotfiles-skel-shell-drop-in
+[submodule "kmarek-dotfiles-skel-ssh-drop-in"]
+	path = modules/kmarek-dotfiles-skel-ssh-drop-in
+	url = .
+	branch = kmarek-dotfiles-skel-ssh-drop-in
