@@ -30,3 +30,7 @@
 	path = modules/kmarek-dotfiles-shared-bash-prompt
 	url = .
 	branch = kmarek-dotfiles-shared-bash-prompt
+[submodule "kmarek-dotfiles-shared-bash-util-tac"]
+	path = modules/kmarek-dotfiles-shared-bash-util-tac
+	url = .
+	branch = kmarek-dotfiles-shared-bash-util-tac
