@@ -2,3 +2,7 @@
 	path = modules/rcm
 	url = .
 	branch = rcm
+[submodule "kmarek-dotfiles-skel-shell-drop-in"]
+	path = modules/kmarek-dotfiles-skel-shell-drop-in
+	url = .
+	branch = kmarek-dotfiles-skel-shell-drop-in
