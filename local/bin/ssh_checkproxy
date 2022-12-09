@@ -27,11 +27,24 @@ if [ ! -f "$checkproxy" ]; then
 fi
 
 # run the domain drop-in checking script
-rval=0; "$checkproxy" || rval="$?"
+rval=0; stdout="$("$checkproxy")" || rval="$?"
 
-# exit with the value ssh expects depending on the drop-in return value
+# exit with the value ssh expects
+# depending on the drop-in return value and output
 if [ "$rval" -eq 0 ]; then
-	exit 0
+	if [ "$stdout" = "yes" ]; then
+		# enable proxy
+		exit 0
+	elif [ "$stdout" = "no" ]; then
+		# disable proxy
+		exit 1
+	else
+		# unexpected output,
+		# so we'll assume no proxy
+		exit 1
+	fi
 else
+	# the checkproxy script did not execute successfully,
+	# so we'll assume no proxy
 	exit 1
 fi
