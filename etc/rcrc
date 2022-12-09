@@ -1,0 +1,35 @@
+# etc/rcrc
+
+# This file tells rcm how to use the dotfiles found in this repository.
+# In order to use this rcrc file, the RCRC environment variable must be
+# set to the path of this file.
+
+# variable referring to the root of this repository
+toplevel="${BASH_SOURCE[0]%/*}"
+toplevel="${toplevel:-/}"
+test -n "${toplevel%%/*}" && toplevel="$PWD/$toplevel"
+toplevel="$toplevel/.."
+
+# list the submodules as the source of dotfiles instead of ~/.dotfiles
+#
+# Note: DOTFILES_DIRS is ordered by precedence, so the first occurrence
+#       of a given file is the one used, and the first directory is the
+#       default destination for mkrc.
+#
+#       We build the DOTFILES_DIRS value in reverse order below by
+#       prepending the value each time. Therefore, the last directory
+#       listed below is the highest priority, and is the default
+#       destination for mkrc.
+DOTFILES_DIRS=""
+DOTFILES_DIRS="$toplevel/modules/kmarek-dotfiles-skel-shell-drop-in $DOTFILES_DIRS"
+DOTFILES_DIRS="$toplevel/modules/kmarek-dotfiles-skel-ssh-drop-in $DOTFILES_DIRS"
+DOTFILES_DIRS="$toplevel/modules/kmarek-dotfiles-skel-ssh-checkproxy-drop-in $DOTFILES_DIRS"
+DOTFILES_DIRS="$toplevel/modules/kmarek-dotfiles-skel-vim-drop-in $DOTFILES_DIRS"
+DOTFILES_DIRS="$toplevel/modules/kmarek-dotfiles-shared-bash-debug-hook $DOTFILES_DIRS"
+DOTFILES_DIRS="$toplevel/modules/kmarek-dotfiles-shared-bash-history $DOTFILES_DIRS"
+DOTFILES_DIRS="$toplevel/modules/kmarek-dotfiles-shared-bash-prompt $DOTFILES_DIRS"
+DOTFILES_DIRS="$toplevel/modules/kmarek-dotfiles-shared-bash-util-tac $DOTFILES_DIRS"
+DOTFILES_DIRS="$toplevel/modules/kmarek-dotfiles-shared-bash-util-escape $DOTFILES_DIRS"
+DOTFILES_DIRS="$toplevel/modules/kmarek-dotfiles-shared-bash-util-urlescape $DOTFILES_DIRS"
+DOTFILES_DIRS="$toplevel/modules/kmarek-dotfiles-personal-vimrc $DOTFILES_DIRS"
+DOTFILES_DIRS="$toplevel/modules/kmarek-dotfiles-personal-todo $DOTFILES_DIRS"
