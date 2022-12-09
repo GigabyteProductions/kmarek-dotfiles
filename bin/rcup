@@ -1,0 +1,14 @@
+#!/bin/bash
+
+set -eu
+
+bin="${BASH_SOURCE[0]}"
+binname="${bin##*/}"
+test -n "$binname"
+bindir="${bin%/*}"
+bindir="${bindir:-/}"
+test -n "${bindir%%/*}" && bindir="$PWD/$bindir"
+
+export PATH="$bindir/../modules/rcm/usr/local/bin:$PATH"
+export RCRC="$bindir/../etc/rcrc"
+exec "$bindir/../modules/rcm/usr/local/bin/$binname" "$@"
