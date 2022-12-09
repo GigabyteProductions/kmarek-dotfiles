@@ -14,3 +14,7 @@
 	path = modules/kmarek-dotfiles-skel-ssh-checkproxy-drop-in
 	url = .
 	branch = kmarek-dotfiles-skel-ssh-checkproxy-drop-in
+[submodule "kmarek-dotfiles-skel-vim-drop-in"]
+	path = modules/kmarek-dotfiles-skel-vim-drop-in
+	url = .
+	branch = kmarek-dotfiles-skel-vim-drop-in
