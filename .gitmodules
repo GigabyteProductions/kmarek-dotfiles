@@ -26,3 +26,7 @@
 	path = modules/kmarek-dotfiles-shared-bash-history
 	url = .
 	branch = kmarek-dotfiles-shared-bash-history
+[submodule "kmarek-dotfiles-shared-bash-prompt"]
+	path = modules/kmarek-dotfiles-shared-bash-prompt
+	url = .
+	branch = kmarek-dotfiles-shared-bash-prompt
