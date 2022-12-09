@@ -1,18 +1,37 @@
 #!/bin/bash
 
+# locate where this script is installed
+bindir="${BASH_SOURCE[0]%/*}"
+bindir="${bindir:-/}"
+test -n "${bindir%%/*}" && bindir="$PWD/$bindir"
+
+# skip all proxy logic if environment variable is set
 if [[ ${SSH_SKIP_PROXY,,} =~ ^(yes|true|1)$ ]]; then
 	exit 1
 fi
 
+# read the command-line domain parameter
 domain="$1"
 
+# skip all proxy logic for this domain if skip file exists
 if [ -e "/var/run/user/$UID/ssh/skip_proxy.d/$domain" ]; then
 	exit 1
 fi
 
-case "$domain" in
-	*)
-		echo "$0: No test for domain: $domain" >&2
-		exit 2
-	;;
-esac
+# locate individual domain drop-in relative to this script location
+checkproxy="$bindir/../libexec/ssh_checkproxy/domains/checkproxy-$domain"
+
+# if there is no drop-in for this domain, just assume no proxy
+if [ ! -f "$checkproxy" ]; then
+	exit 1
+fi
+
+# run the domain drop-in checking script
+rval=0; "$checkproxy" || rval="$?"
+
+# exit with the value ssh expects depending on the drop-in return value
+if [ "$rval" -eq 0 ]; then
+	exit 0
+else
+	exit 1
+fi
