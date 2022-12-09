@@ -22,3 +22,7 @@
 	path = modules/kmarek-dotfiles-shared-bash-debug-hook
 	url = .
 	branch = kmarek-dotfiles-shared-bash-debug-hook
+[submodule "kmarek-dotfiles-shared-bash-history"]
+	path = modules/kmarek-dotfiles-shared-bash-history
+	url = .
+	branch = kmarek-dotfiles-shared-bash-history
