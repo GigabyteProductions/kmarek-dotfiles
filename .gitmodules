@@ -10,3 +10,7 @@
 	path = modules/kmarek-dotfiles-skel-ssh-drop-in
 	url = .
 	branch = kmarek-dotfiles-skel-ssh-drop-in
+[submodule "kmarek-dotfiles-skel-ssh-checkproxy-drop-in"]
+	path = modules/kmarek-dotfiles-skel-ssh-checkproxy-drop-in
+	url = .
+	branch = kmarek-dotfiles-skel-ssh-checkproxy-drop-in
