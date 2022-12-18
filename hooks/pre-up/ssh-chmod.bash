@@ -2,6 +2,24 @@
 
 # hooks/pre-up/ssh-chmod.bash
 
+# This hook removes write permission granted to group or other from ssh
+# config file mode.
+#
+# Background:
+#
+# ssh (and sshd when StrictModes is yes) prohibit the use of config
+# files with modes that are too permissive. However, git only keeps
+# track of file executabiliy [*]. So if there is no post-checkout git
+# hook configured to correct mode, git will checkout ssh config files
+# according to the umask of the user and indexed executability.
+#
+# [*]: Git tree objects actually record a POSIX-style 3-digit octal
+#      mode. However, at the time of writing, only "755" and "644" are
+#      valid for regular files [1]. In fact, you may notice that write
+#      permission for group and other are not even set in the git tree.
+#
+# [1]: https://git.kernel.org/pub/scm/git/git.git/plain/Documentation/technical/index-format.txt?h=v2.33.0
+
 set -e
 shopt -s nullglob
 
