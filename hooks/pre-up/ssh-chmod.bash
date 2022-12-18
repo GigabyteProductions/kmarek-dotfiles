@@ -1,4 +1,6 @@
-#!/bin/bash -e
+#!/bin/bash
+
+set -e
 
 # create ~/.ssh before rcup would with incorrect permissions
 test -d ~/.ssh || mkdir -v --mode 0700 ~/.ssh
