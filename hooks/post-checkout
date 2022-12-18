@@ -52,9 +52,9 @@ if [ "${#precreate[@]}" -gt 0 ]; then
 	mkdir -v -- "${precreate[@]}"
 fi
 
-# find the root of this dotfiles repository relative to this hook
-# (this hook is in hooks/pre-up/)
-basedir="$bindir/../.."
+# find the root of this dotfiles repository
+# (this hook executes from the worktree)
+basedir="."
 
 # dir_candidates are the places ssh configs may exist
 # (nullglob prevents the unmatched globs from causing problems)
