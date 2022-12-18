@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# hooks/pre-up/ssh-chmod.bash
+# $GIT_DIR/hooks/post-checkout
 
 # This hook removes write permission granted to group or other from ssh
 # config file mode.
