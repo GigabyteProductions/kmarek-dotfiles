@@ -23,10 +23,6 @@
 set -e
 shopt -s nullglob
 
-bindir="${BASH_SOURCE[0]%/*}"
-bindir="${bindir:-/}"
-test -n "${bindir%%/*}" && bindir="$PWD/$bindir"
-
 # find the root of this dotfiles repository
 # (this hook executes from the worktree)
 basedir="."
