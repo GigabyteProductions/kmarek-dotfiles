@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# hooks/pre-up/ssh-chmod.bash
+
 set -e
 
 # create ~/.ssh before rcup would with incorrect permissions
