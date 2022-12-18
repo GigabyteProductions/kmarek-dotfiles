@@ -3,8 +3,7 @@
 # hooks/pre-up/ssh-chmod.bash
 
 set -e
-
-# correct permissions on ssh configuration files before deployment
+shopt -s nullglob
 
 bindir="${BASH_SOURCE[0]%/*}"
 bindir="${bindir:-/}"
@@ -39,4 +38,24 @@ fi
 # (this hook is in hooks/pre-up/)
 basedir="$bindir/../.."
 
-chmod -cR go-rwx "$basedir/ssh" "$basedir"/tag-*/ssh
+# dir_candidates are the places ssh configs may exist
+# (nullglob prevents the unmatched globs from causing problems)
+dir_candidates=(
+	"$basedir"/ssh
+	"$basedir"/tag-*/ssh
+	"$basedir"/host-*/ssh
+)
+
+# dirs are the directories that exist
+dirs=()
+for dir in "${dir_candidates[@]}"; do
+	if [ -d "$dir" ]; then
+		dirs+=("$dir")
+	fi
+done
+
+# correct permissions on ssh configuration files before deployment
+# by calling chmod if any ssh config directories were found
+if [ "${#dirs[@]}" -gt 0 ]; then
+	chmod -cR go-w -- "${dirs[@]}"
+fi
